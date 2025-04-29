@@ -1,35 +1,19 @@
 [
     {
-        "username": "admin",
-        "message": "world"
+        "username": "ertyu",
+        "message": "hello"
     },
     {
-        "username": "admin",
+        "username": null,
         "message": "hello"
     },
     {
         "username": "admin",
-        "message": "hello"
+        "message": "hola"
     },
     {
         "username": "admin",
         "message": "hello"
-    },
-    {
-        "username": "admin",
-        "message": "hola\n"
-    },
-    {
-        "username": "admin",
-        "message": "dsdgopofdsdfopds"
-    },
-    {
-        "username": "admin",
-        "message": "hello\n"
-    },
-    {
-        "username": "admin",
-        "message": "hello\n"
     },
     {
         "username": "admin",

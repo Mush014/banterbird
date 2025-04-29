@@ -1,10 +1,13 @@
-const username = "admin";
+
+let username = localStorage.getItem("username");
+if(!username){
+    window.location.href = "/login";
+}
 
 function renderPost(post, isNew = false) {
     const template = document.getElementById("post-template").content.cloneNode(true);
     template.querySelector(".username").innerText = post.username;
-    template.querySelector(".message").innerText = post.message;
-    document.getElementById("feed").appendChild(template);
+    template.querySelector(".message").innerText = post.message;    
 
     if (isNew) {
         document.getElementById("feed").prepend(template);
@@ -13,26 +16,26 @@ function renderPost(post, isNew = false) {
       }
 }
 
-function submitPost() {
+async function submitPost() {
     const message = document.getElementById("postInput").value;
     try{
-        const response = fetch('/api/add_post', {
+        const response = await fetch('/api/posts', {
             method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, message }),
+      body: JSON.stringify({ username: username, message: message }),
     });
     if (response.ok) {
-        renderPost({ username, message }, true); // Pass `isNew = true`
+        renderPost({ username: username, message: message }, true); // Pass `isNew = true`
         document.getElementById("postInput").value = ""; // Clear the input box
       }
-    }catch (error)
-{
+    }catch (error){
         console.log("Post failed 🤣", error)
     }
 }
 
 window.onload = async () => {
     try {
+      document.getElementById("username").innerText = username;
       const response = await fetch("/api/posts");
       const posts = await response.json();
       posts.forEach((post) => renderPost(post));
